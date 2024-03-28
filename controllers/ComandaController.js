@@ -1,14 +1,14 @@
 const { json } = require("express")
-const Produto = require("../models/Produto")
+const Comanda = require("../models/Comanda")
 
-const ProdutoController = {
+const ComandaController = {
     getAll: async (req, res) => {
-        res.json( await Produto.find())
+        res.json( await Comanda.find())
     },
     get: async (req, res) => {
 
         try {
-            res.json( await Produto.findById(req.params.id ))  
+            res.json( await Comanda.findById(req.params.id ))  
         } catch (error) {
             res.status(404).json({error: 'Registro não encontrado'})
         }
@@ -16,14 +16,14 @@ const ProdutoController = {
     },
     create: async (req, res) => {
         try {
-            res.json( await Produto.create(req.body))
+            res.json( await Comanda.create(req.body))
         } catch (error) {
             res.status(400).json({error})
         }
     },
     update: async (req, res) => {
         try {
-            res.json( await Produto.findByIdAndUpdate(req.params.id, req.body))
+            res.json( await Comanda.findByIdAndUpdate(req.params.id, req.body))
         } catch (error) {
             res.status(404).json({error: 'Registro não encontrado'})
         }
@@ -31,11 +31,11 @@ const ProdutoController = {
     delete: async (req, res) => {
 
         try {
-            res.json( await Produto.findByIdAndDelete(req.params.id))
+            res.json( await Comanda.findByIdAndDelete(req.params.id))
         } catch (error) {
             res.status(404).json({error: 'Registro não encontrado'})
         }
     },
 }
 
-module.exports = ProdutoController
+module.exports = ComandaController
